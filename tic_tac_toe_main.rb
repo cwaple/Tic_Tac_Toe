@@ -2,19 +2,23 @@ require './board'
 require './player'
 require './game'
 
-=begin
-This file will run the main game loop:
- - Initializing objects for game
- - Requesting input from user and objects until game over
-=end
+board = Board.new
 
-# Initialize players, board, and game
+puts "Enter player one's name: "
+p1_name = gets.strip
+puts "Enter player two's name: "
+p2_name = gets.strip
 
-# while !game_over?
-  # display board
-  # puts player_whos_turn_it_is and asks them to choose a cell
-  # game makes move
-# end
+player_one = Player.new(p1_name, "x")
+player_two = Player.new(p2_name, "y")
 
-#display board
-#puts winner
+game = Game.new(player_one, player_two, board, player_one)
+
+game.get_board.display
+cell = 0
+
+while !game.game_over?
+  puts "#{game.get_whos_turn.get_name}, select a cell: "
+  cell = gets.to_i
+  game.play_move(cell)
+end

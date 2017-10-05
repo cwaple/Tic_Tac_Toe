@@ -10,8 +10,8 @@ class Board
   end
 
   def set_cell(cell_num, player_token)
-		if @board[cell_num] == cell_num+1 then
-			@board[cell_num] = player_token
+		if @board[cell_num-1] == cell_num then
+			@board[cell_num-1] = player_token
 			return true
 		else 
 			return false
